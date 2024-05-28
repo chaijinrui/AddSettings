@@ -11,8 +11,9 @@ public class Action {
 
     //    配置结束后的立即生效方法
     public static void execute(String token, String name) throws IOException {
-        String excuteurl1 = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?" + "actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue=";
-        String excuteurl2 = FindParams.findAppid2(name, token) + "\"actions\":\"advertScriptById\",\"url\":\"http://";
+        String excuteurl1 = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue=";
+        String excuteurl2 = FindParams.findAppid2(name, token) + "\"actions\":\"advertScriptById\",\"url\":";
+        String Domain = "\"http://";
         String excuteurl3 = "/sdk/api/init/admin/setup\",\"flag\":\"1\"}";
         String[] ipArray = {
                 "39.103.193.66:8060",
@@ -46,21 +47,22 @@ public class Action {
                 "47.92.223.62:8060",
                 "39.98.55.111:8060",
                 "47.92.171.5:8060"};
+//        url的编码遇到问题，浏览器自带编码工具
+        String finalUrl = null;
         for (int i = 0; i < ipArray.length; i++) {
             String ip = ipArray[i];
-            log.info(excuteurl1);
-            log.info(excuteurl2);
-            log.info(excuteurl3);
-            log.info(URLEncoder.encode(excuteurl2 + ip + excuteurl3, "UTF-8"));
-            log.info(excuteurl1 + URLEncoder.encode(excuteurl2, "UTF-8") + ip + URLEncoder.encode(excuteurl3, "UTF-8"));
-            log.info(RequestUtil.getRequest(excuteurl1 + URLEncoder.encode(excuteurl2 + ip + excuteurl3, "UTF-8"), token));
+            log.info(excuteurl1 + excuteurl2 + Domain + ip + excuteurl3);
+            finalUrl = excuteurl1 + URLEncoder.encode(excuteurl2 + Domain + ip + excuteurl3, "UTF-8");
+            log.info(finalUrl);
+            System.out.println("响应值：" + RequestUtil.getRequest(finalUrl, token));
         }
     }
 
     public static void main(String[] args) throws IOException {
-        //        log.info(RequestUtil.getRequest("http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue={\"cp_id\":9483,\"app_id\":5717,\"sdk_code\":3018,\"actions\":\"advertScriptById\",\"url\":\"http://39.103.193.66:8060/sdk/api/init/admin/setup\",\"flag\":\"1\"}\n", GetToken.getToken()));
-//           }
+//        log.info(RequestUtil.getRequest("http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue=%7B%22cp_id%22%3A9483%2C%22app_id%22%3A5717%2C%22sdk_code%22%3A3018%2C%22actions%22%3A%22advertScriptById%22%2C%22url%22%3A%22http%3A%2F%2F8.142.209.54%3A8060%2Fsdk%2Fapi%2Finit%2Fadmin%2Fsetup%22%2C%22flag%22%3A%221%22%7D", GetToken.getToken()));
         Action.execute(GetToken.getToken(), "西瓜免费小说");
     }
+
 }
+
 

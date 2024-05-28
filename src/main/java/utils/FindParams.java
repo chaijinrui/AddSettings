@@ -65,8 +65,8 @@ public class FindParams {
                 break;
             }
         }
-        log.info("{\"asId\":\"9483," + appid + ",3018\",");
-        return "{\"asId\":\"9483," + appid + ",3018\",";
+        log.info("{\"cp_id\":9483," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,");
+        return "{\"cp_id\":9483," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,";
     }
 }
 
