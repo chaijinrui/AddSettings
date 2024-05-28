@@ -17,8 +17,6 @@ public class RequestUtil {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             // 创建HttpGet请求
             HttpGet httpGet = new HttpGet(url);
-            long startTime = System.nanoTime();
-
             // 设置cookie
             httpGet.setHeader("Cookie", token);
             String responseBody = "1";

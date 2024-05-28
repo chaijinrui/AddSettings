@@ -18,15 +18,17 @@ public class FindParams {
         String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
         // 使用ObjectMapper读取URL中的JSON数据
         ObjectMapper objectMapper = new ObjectMapper();
-        System.out.println(RequestUtil.getRequest(apiUrl, GetToken.token));
-//        为什么返回的是null
-//        JsonNode jsonNode = objectMapper.readTree(RequestUtil.getRequest(apiUrl, GetToken.token));
+        JsonNode jsonNode = objectMapper.readTree(RequestUtil.getRequest(apiUrl, GetToken.getToken()));
+
+        String appname = jsonNode.get("appname").asText();
+        System.out.println(appname);
+
 //
 //return jsonNode;
     }
 
     public static void main(String[] args) throws IOException {
-
+Findappid("西瓜免费小说");
 
     }
 }
