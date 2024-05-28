@@ -11,7 +11,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/*
+这
+ */
 public class RequestUtil {
+    /*
+这个方法用来做URL的请求
+ */
     public static String getRequest(String url, String token) {
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -32,9 +38,6 @@ public class RequestUtil {
 
                     // 将实体转换为字符串
                     responseBody = EntityUtils.toString(entity);
-
-                    // 输出响应内容
-//                    System.out.println("Response Body: " + responseBody);
 
 
                     // 这里可以根据需要添加更详细的断言来验证响应内容

@@ -9,6 +9,7 @@ import java.util.Map;
  * 主要是将json文件的内容转换为post请求的参数
  *
  */
+@Deprecated
 public class JsonToPostParams {
 
     public static String jsonFileToPostParams(String filePath) {

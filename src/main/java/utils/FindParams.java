@@ -2,8 +2,14 @@ package utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+
+import static utils.RequestUtil.getRequest;
 
 
 /**
@@ -14,22 +20,53 @@ import java.io.IOException;
  * Description：
  */
 public class FindParams {
-    public static void Findappid(String name) throws IOException {
+    private static final Logger log = LogManager.getLogger(FindParams.class);
+
+    //获取appid，然后拼接起来用做参数
+    public static String findAppid(String name, String token) throws IOException {
         String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
+        String appid = null;
+        String appname;
         // 使用ObjectMapper读取URL中的JSON数据
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(RequestUtil.getRequest(apiUrl, GetToken.getToken()));
+        JsonNode jsonNode = objectMapper.readTree(getRequest(apiUrl, token));
+        JsonNode dataTableNode = jsonNode.get("dataTable");
 
-        String appname = jsonNode.get("appname").asText();
-        System.out.println(appname);
-
-//
-//return jsonNode;
+        for (JsonNode appNode : dataTableNode) {
+            appname = appNode.get("appname").asText();
+            appid = appNode.get("app_id").asText();
+            // 接下来可以对appname进行处理或检查
+            if (appname.equals(name)) {
+                log.info("app_id= " + appid);
+                log.info("name= " + name);
+                break;
+            }
+        }
+        log.info("入参：" + "{\"asId\":\"9483," + appid + ",3018\"}");
+        return "{\"asId\":\"9483," + appid + ",3018\"}";
     }
 
-    public static void main(String[] args) throws IOException {
-Findappid("西瓜免费小说");
+    public static String findAppid2(String name, String token) throws IOException {
+        String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
+        String appid = null;
+        String appname;
+        // 使用ObjectMapper读取URL中的JSON数据
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(getRequest(apiUrl, token));
+        JsonNode dataTableNode = jsonNode.get("dataTable");
 
+        for (JsonNode appNode : dataTableNode) {
+            appname = appNode.get("appname").asText();
+            appid = appNode.get("app_id").asText();
+            // 接下来可以对appname进行处理或检查
+            if (appname.equals(name)) {
+                log.info("app_id= " + appid);
+                log.info("name= " + name);
+                break;
+            }
+        }
+        log.info("{\"asId\":\"9483," + appid + ",3018\",");
+        return "{\"asId\":\"9483," + appid + ",3018\",";
     }
 }
 
