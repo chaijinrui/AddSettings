@@ -58,10 +58,6 @@ public class Action {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        Action.execute(GetToken.getToken(), "西瓜免费小说");
-    }
-
 }
 
 

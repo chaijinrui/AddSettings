@@ -28,7 +28,8 @@ public class ChangeRespon {
 //        add配置
         String addUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?" +
                 "actions=addAdvertCommonConfigValues&methodName=AdvertJoinSDK_ReCreate&formValue=" +
-                URLEncoder.encode((FindParams.findAppid2(name, token) + "\"key\":\"" + settingName + "\",\"value\":\"" + settingValue + "\",\"cId\":0}"), "UTF-8");
+                URLEncoder.encode((FindParams.findAppid3(name, token) + "\"key\":\"" + settingName + "\",\"value\":\"" + settingValue + "\",\"cId\":0}"), "UTF-8");
+        log.info("add接口入参：{}", FindParams.findAppid3(name, token) + "\"key\":\"" + settingName + "\",\"value\":\"" + settingValue + "\",\"cId\":0}");
         log.info("请求add接口响应：{}", RequestUtil.getRequest(addUrl, token));
     }
 
