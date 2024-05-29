@@ -23,6 +23,7 @@ public class FindParams {
     private static final Logger log = LogManager.getLogger(FindParams.class);
 
     //获取appid，然后拼接起来用做参数
+//    生成值  {"asId":"9483,5717,3018"
     public static String findAppid(String name, String token) throws IOException {
         String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
         String appid = null;
@@ -46,6 +47,8 @@ public class FindParams {
         return "{\"asId\":\"9483," + appid + ",3018\"}";
     }
 
+
+    //    生成值 {"cp_id":9483,"app_id":5717,"sdk_code":3018,
     public static String findAppid2(String name, String token) throws IOException {
         String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
         String appid = null;

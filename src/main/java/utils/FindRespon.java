@@ -17,7 +17,7 @@ public class FindRespon {
                 "actions=getAdvertCommonConfigValues&methodName=AdvertJoinSDK_ReCreate&formValue=" + URLEncoder.encode(FindParams.findAppid(name, token), "UTF-8");
         log.info(responUrl);
         String respon = RequestUtil.getRequest(responUrl, token);
-        log.info("请求全局配置返回结果：" + respon);
+        log.info("请求全局配置返回结果：{}", respon);
         return respon;
     }
 }

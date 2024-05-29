@@ -51,15 +51,14 @@ public class Action {
         String finalUrl = null;
         for (int i = 0; i < ipArray.length; i++) {
             String ip = ipArray[i];
-            log.info(excuteurl1 + excuteurl2 + Domain + ip + excuteurl3);
+            log.info("{}{}{}{}{}", excuteurl1, excuteurl2, Domain, ip, excuteurl3);
             finalUrl = excuteurl1 + URLEncoder.encode(excuteurl2 + Domain + ip + excuteurl3, "UTF-8");
-            log.info(finalUrl);
-            System.out.println("响应值：" + RequestUtil.getRequest(finalUrl, token));
+            log.info("请求链接：{}", finalUrl);
+            log.info("立即生效响应：{}", RequestUtil.getRequest(finalUrl, token));
         }
     }
 
     public static void main(String[] args) throws IOException {
-//        log.info(RequestUtil.getRequest("http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue=%7B%22cp_id%22%3A9483%2C%22app_id%22%3A5717%2C%22sdk_code%22%3A3018%2C%22actions%22%3A%22advertScriptById%22%2C%22url%22%3A%22http%3A%2F%2F8.142.209.54%3A8060%2Fsdk%2Fapi%2Finit%2Fadmin%2Fsetup%22%2C%22flag%22%3A%221%22%7D", GetToken.getToken()));
         Action.execute(GetToken.getToken(), "西瓜免费小说");
     }
 

@@ -1,9 +1,6 @@
 package servers;
 
-import utils.FindParams;
-import utils.FindRespon;
-import utils.GetToken;
-import utils.RequestUtil;
+import utils.*;
 
 import java.io.IOException;
 
@@ -13,10 +10,15 @@ public class GlobalSettings {
 
     //    传入的包名不止一个
     public void addSettings(String packageChineseName, String settingName, String settingValue, String token) throws IOException {
-//        请求全局配置返回结果
-        FindRespon.findGolbalRespon("西瓜免费小说", GetToken.getToken());
-
+//      修改配置
+        ChangeRespon.addRespon(packageChineseName, settingValue, settingName, token);
+//        立即生效
+        Action.execute(token, packageChineseName);
     }
 
+
+    public static void main(String[] args) throws IOException {
+        new GlobalSettings().addSettings("西瓜免费小说", "AXR", "77", GetToken.getToken());
+    }
 }
 

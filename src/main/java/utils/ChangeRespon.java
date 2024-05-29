@@ -15,7 +15,7 @@ import java.net.URLEncoder;
 public class ChangeRespon {
     private static final Logger log = LogManager.getLogger(ChangeRespon.class);
 
-    public static void addRespon(String settingName, String settingValue, String name, String token) throws IOException {
+    public static void addRespon(String name, String settingValue, String settingName, String token) throws IOException {
 //        打印配置的值
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(FindRespon.findGolbalRespon(name, token));
@@ -29,11 +29,8 @@ public class ChangeRespon {
         String addUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?" +
                 "actions=addAdvertCommonConfigValues&methodName=AdvertJoinSDK_ReCreate&formValue=" +
                 URLEncoder.encode((FindParams.findAppid2(name, token) + "\"key\":\"" + settingName + "\",\"value\":\"" + settingValue + "\",\"cId\":0}"), "UTF-8");
-        log.info("响应："+RequestUtil.getRequest(addUrl, token));
-//        log.info(addUrl);
+        log.info("请求add接口响应：{}", RequestUtil.getRequest(addUrl, token));
     }
 
-    public static void main(String[] args) throws IOException {
-        ChangeRespon.addRespon("AXR", "99", "西瓜免费小说", GetToken.getToken());
-    }
+
 }
