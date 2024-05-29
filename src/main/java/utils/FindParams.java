@@ -17,7 +17,8 @@ import static utils.RequestUtil.getRequest;
  * Author: thinkbook-chaijinrui
  * Date: 2024/5/27
  * Time: 22:50
- * Description：三种方法的区别  只有返回值不同。根据不同接口的入参，拼接出不一样的入参return给调用方
+ * Description：拼接入参。
+ * 三种方法的区别  只有返回值不同。根据不同接口的入参，拼接出不一样的入参return给调用方
  */
 public class FindParams {
     private static final Logger log = LogManager.getLogger(FindParams.class);
@@ -42,7 +43,7 @@ public class FindParams {
                 break;
             }
         }
-        log.info("入参：" + "{\"asId\":\"9483," + appid + ",3018\"}");
+//        log.info("入参：" + "{\"asId\":\"9483," + appid + ",3018\"}");
         return "{\"asId\":\"9483," + appid + ",3018\"}";
     }
 
@@ -64,7 +65,7 @@ public class FindParams {
                 break;
             }
         }
-        log.info("{\"cp_id\":9483," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,");
+//        log.info("{\"cp_id\":9483," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,");
         return "{\"cp_id\":9483," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,";
     }
 

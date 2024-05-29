@@ -32,7 +32,6 @@ public class GetToken {
 
         // 发送请求
         int responseCode = connection.getResponseCode();
-        log.info("Response Code : {}", responseCode);
         // 获取所有响应头
         Map<String, List<String>> headerFields = connection.getHeaderFields();
         for (Map.Entry<String, List<String>> entry : headerFields.entrySet()) {

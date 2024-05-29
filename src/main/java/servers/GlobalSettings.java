@@ -11,7 +11,10 @@ public class GlobalSettings {
     public void addSettings(String packageChineseName, String settingName, String settingValue, String token) throws IOException {
 
 //      修改配置
-        ChangeRespon.addRespon(packageChineseName, settingValue, settingName, token);
+        boolean Goon = ChangeRespon.addRespon(packageChineseName, settingValue, settingName, token);
+        if (!Goon) {
+            return;
+        }
 //        立即生效
         Action.execute(token, packageChineseName);
     }
@@ -21,14 +24,13 @@ public class GlobalSettings {
 //        需要增加配置的包
         String[] rpkName = {
                 "西瓜免费小说",
-                "答题赚宝",
+//                "答题赚宝",
                 "十万个冷知识"};
 
 
         for (String packname : rpkName) {
             new GlobalSettings().addSettings(packname, "AXR", "77", GetToken.getToken());
         }
-
     }
 }
 

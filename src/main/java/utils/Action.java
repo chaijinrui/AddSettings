@@ -9,7 +9,7 @@ import java.net.URLEncoder;
 public class Action {
     private static final Logger log = LogManager.getLogger(Action.class);
 
-    //    配置结束后的立即生效方法
+    //    立即生效
     public static void execute(String token, String name) throws IOException {
         String excuteurl1 = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue=";
         String excuteurl2 = FindParams.findAppid2(name, token) + "\"actions\":\"advertScriptById\",\"url\":";
@@ -56,8 +56,14 @@ public class Action {
             log.info("请求链接：{}", finalUrl);
             log.info("立即生效响应：{}", RequestUtil.getRequest(finalUrl, token));
         }
+        log.info("{}添加完毕：", name);
     }
 
+    //判断SettingName是否正确
+    public static void judgeSettingName(String token) {
+        String settingUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getAdvertShow&methodName=AdverJoinSDK&formValue=%7B%22KeyName%22%3A%22advertCommonConfig%22%7D";
+        RequestUtil.getRequest(settingUrl, token)
+    }
 }
 
 

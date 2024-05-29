@@ -13,13 +13,16 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+
 /*
 这
  */
 public class RequestUtil {
+    private static final Logger log = LogManager.getLogger(RequestUtil.class);
+
     /*
-这个方法用来做URL的请求
- */
+    这个方法用来做URL的请求，返回响应体
+     */
     public static String getRequest(String url, String token) {
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
