@@ -20,7 +20,7 @@ import static utils.RequestUtil.getRequest;
  * Description：拼接入参。
  * 三种方法的区别  只有返回值不同。根据不同接口的入参，拼接出不一样的入参return给调用方
  */
-public class FindParams {
+public class    FindParams {
     private static final Logger log = LogManager.getLogger(FindParams.class);
 
     //获取appid，然后拼接起来用做参数
