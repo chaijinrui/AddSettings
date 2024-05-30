@@ -1,8 +1,12 @@
 package utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -56,13 +60,21 @@ public class Action {
             log.info("请求链接：{}", finalUrl);
             log.info("立即生效响应：{}", RequestUtil.getRequest(finalUrl, token));
         }
-        log.info("{}添加完毕：", name);
+        log.info("{}添加完毕", name);
     }
 
     //判断SettingName是否正确
-    public static void judgeSettingName(String token) {
+    public static Boolean judgeSettingName(String token, String settingName) throws JsonProcessingException {
         String settingUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getAdvertShow&methodName=AdverJoinSDK&formValue=%7B%22KeyName%22%3A%22advertCommonConfig%22%7D";
-        RequestUtil.getRequest(settingUrl, token)
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(RequestUtil.getRequest(settingUrl, token)).get("dataTable");
+        for (JsonNode node : jsonNode) {
+            if (settingName.equals(node.get("KeyName").asText())) {
+                return true;
+            }
+        }
+        log.info("{},不存在", settingName);
+        return false;
     }
 }
 

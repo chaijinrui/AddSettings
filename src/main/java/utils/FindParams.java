@@ -34,7 +34,6 @@ public class FindParams {
         JsonNode dataTableNode = jsonNode.get("dataTable");
 
 //        找出cpid,包名的遍历不能在这里处理，得在调用方处理。调用方每次值传进来一个包名，该方法每次返回一个链接，待所有请求完成后，再传进来第二个参数...
-        //todo
         for (JsonNode appNode : dataTableNode) {
             appname = appNode.get("appname").asText();
             appid = appNode.get("app_id").asText();
@@ -87,6 +86,26 @@ public class FindParams {
             }
         }
         return "{\"asId\":\"9483," + appid + ",3018\",";
+    }
+
+    public static String findAppid4(String name, String token) throws IOException {
+        String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
+        String appid = null;
+        String appname;
+        // 使用ObjectMapper读取URL中的JSON数据
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(getRequest(apiUrl, token));
+        JsonNode dataTableNode = jsonNode.get("dataTable");
+
+        for (JsonNode appNode : dataTableNode) {
+            appname = appNode.get("appname").asText();
+            appid = appNode.get("app_id").asText();
+            // 接下来可以对appname进行处理或检查
+            if (appname.equals(name)) {
+                break;
+            }
+        }
+        return appid;
     }
 }
 
