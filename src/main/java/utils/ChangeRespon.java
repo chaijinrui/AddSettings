@@ -26,6 +26,7 @@ public class ChangeRespon {
                 log.info(settingName + "已存在，value= " + node.get("value").asText());
                 if (!settingValue.equals(node.get("value").asText())) {
                     fixRespon(name, settingValue, settingName, token, cId);
+                    return false;
                 } else
                     return true; //要是配置本来就符合预期，这条case还没搞好
             }
