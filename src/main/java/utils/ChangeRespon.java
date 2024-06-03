@@ -28,7 +28,7 @@ public class ChangeRespon {
                     fixRespon(name, settingValue, settingName, token, cId);
                     return false;
                 } else
-                    return true; //要是配置本来就符合预期，这条case还没搞好
+                    return true;
             }
         }
 //        add配置

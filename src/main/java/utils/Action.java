@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 
+
 public class Action {
     private static final Logger log = LogManager.getLogger(Action.class);
 
@@ -76,6 +77,27 @@ public class Action {
         log.info("{},不存在", settingName);
         return false;
     }
+
+    //判断packageChineseName是否正确
+    public static void judgePackageChineseName(String name, String token) throws JsonProcessingException, SelfException {
+        String nameUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(RequestUtil.getRequest(nameUrl, token)).get("dataTable");
+        boolean foundMatch = true;
+        String truename = "";
+        for (JsonNode node : jsonNode) {
+            truename = node.get("appname").asText();
+            if (name.equals(truename)) {
+                foundMatch = false;
+                break;
+            }
+        }
+        if (!foundMatch) {
+            throw new SelfException(name, truename);
+        } else
+            log.info("包名都正确");
+    }
+
 }
 
 
