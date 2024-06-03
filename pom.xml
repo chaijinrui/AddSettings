@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.3</version> <!-- 版本过高会无法运行在Java8环境 -->
+            <version>7.7.0</version> <!-- 版本过高会无法运行在Java8环境 -->
             <scope>test</scope>
         </dependency>
 

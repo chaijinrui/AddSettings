@@ -44,8 +44,9 @@ public class GlobalSettings {
         log.info("token: {}", token);
 //        需要增加配置的包
         String[] rpkName = {
-                "十万冷知识",
-                "思维守宝",
+//                "做我房客（做我房客H）",
+                "十万个冷知识",
+                "思维夺宝",
                 "夺宝智多星",
                 "静心白噪音",
                 "知识巅峰",
@@ -54,7 +55,7 @@ public class GlobalSettings {
                 "舒睡宝",
                 "黄金读书",
                 "白鲸追书大全",
-                "全兔小说大全",
+                "全免小说大全",
                 "答题之星",
                 "猜题夺金"
         };

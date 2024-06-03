@@ -92,8 +92,8 @@ public class Action {
                 break;
             }
         }
-        if (!foundMatch) {
-            throw new SelfException(name, truename);
+        if (foundMatch) {
+            throw new SelfException(name);
         } else
             log.info("包名都正确");
     }
