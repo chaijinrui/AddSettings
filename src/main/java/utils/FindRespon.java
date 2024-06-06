@@ -12,9 +12,9 @@ import java.net.URLEncoder;
 public class FindRespon {
     private static final Logger log = LogManager.getLogger(FindRespon.class);
 
-    public static String findGolbalRespon(String name, String token) throws IOException {
+    public static String findGolbalRespon(String name, String token,String cpId) throws IOException {
         String responUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?" +
-                "actions=getAdvertCommonConfigValues&methodName=AdvertJoinSDK_ReCreate&formValue=" + URLEncoder.encode(FindParams.findAppid(name, token), "UTF-8");
+                "actions=getAdvertCommonConfigValues&methodName=AdvertJoinSDK_ReCreate&formValue=" + URLEncoder.encode(FindParams.findAppid(name, token,cpId), "UTF-8");
 //        log.info(responUrl);
         String respon = RequestUtil.getRequest(responUrl, token);
         log.info("{}目前配置：{}", name, respon);

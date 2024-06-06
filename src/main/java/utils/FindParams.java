@@ -20,11 +20,11 @@ import static utils.RequestUtil.getRequest;
  * Description：拼接入参。
  * 三种方法的区别  只有返回值不同。根据不同接口的入参，拼接出不一样的入参return给调用方
  */
-public class    FindParams {
+public class FindParams {
     private static final Logger log = LogManager.getLogger(FindParams.class);
 
     //获取appid，然后拼接起来用做参数
-    public static String findAppid(String name, String token) throws IOException {
+    public static String findAppid(String name, String token, String cpId) throws IOException {
         String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
         String appid = null;
         String appname;
@@ -43,11 +43,11 @@ public class    FindParams {
             }
         }
 //        log.info("入参：" + "{\"asId\":\"9483," + appid + ",3018\"}");
-        return "{\"asId\":\"9483," + appid + ",3018\"}";
+        return "{\"asId\":\"" + cpId + "," + appid + ",3018\"}";
     }
 
 
-    public static String findAppid2(String name, String token) throws IOException {
+    public static String findAppid2(String name, String token, String cpId) throws IOException {
         String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
         String appid = null;
         String appname;
@@ -64,11 +64,10 @@ public class    FindParams {
                 break;
             }
         }
-//        log.info("{\"cp_id\":9483," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,");
-        return "{\"cp_id\":9483," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,";
+        return "{\"cp_id\":" + cpId + "," + "\"app_id\":" + appid + ",\"sdk_code\":" + "3018,";
     }
 
-    public static String findAppid3(String name, String token) throws IOException {
+    public static String findAppid3(String name, String token, String cpId) throws IOException {
         String apiUrl = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=getapp&methodName=AdverJoinSDK&formValue=%7B%7D";
         String appid = null;
         String appname;
@@ -85,7 +84,7 @@ public class    FindParams {
                 break;
             }
         }
-        return "{\"asId\":\"9483," + appid + ",3018\",";
+        return "{\"asId\":\"" + cpId + "," + appid + ",3018\",";
     }
 
     public static String findAppid4(String name, String token) throws IOException {

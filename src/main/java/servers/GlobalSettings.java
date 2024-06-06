@@ -12,11 +12,13 @@ import java.io.IOException;
  * settingName 配置名称
  * settingValue 配置值
  * token 请求接口所用的token
+ * cpId 渠道号
  */
+
 public class GlobalSettings {
     private static final Logger log = LogManager.getLogger(GlobalSettings.class);
 
-    public void addSettings(String packageChineseName, String settingName, String settingValue, String token) throws IOException, SelfException {
+    public void addSettings(String packageChineseName, String settingName, String settingValue, String token, String cpId) throws IOException, SelfException {
 //        判断包名是否正确
         Action.judgePackageChineseName(packageChineseName, token);
 
@@ -28,14 +30,14 @@ public class GlobalSettings {
 
 //      修改配置
 
-        boolean result = ChangeRespon.addRespon(packageChineseName, settingValue, settingName, token);
+        boolean result = ChangeRespon.addRespon(packageChineseName, settingValue, settingName, token, cpId);
         if (result) {
             return;
         }
 
 
 //        立即生效
-        Action.execute(token, packageChineseName);
+        Action.execute(token, packageChineseName, cpId);
     }
 
 
@@ -59,9 +61,10 @@ public class GlobalSettings {
                 "答题之星",
                 "猜题夺金"
         };
+        String cpId = "9483";
         for (String packname : rpkName) {
             log.info("{}开始", packname);
-            new GlobalSettings().addSettings(packname, "DJSW", "3-0", token);
+            new GlobalSettings().addSettings(packname, "DJSW", "3-0", token, cpId);
         }
     }
 }

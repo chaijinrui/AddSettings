@@ -15,9 +15,9 @@ public class Action {
     private static final Logger log = LogManager.getLogger(Action.class);
 
     //    立即生效
-    public static void execute(String token, String name) throws IOException {
+    public static void execute(String token, String name,String cpId) throws IOException {
         String excuteurl1 = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue=";
-        String excuteurl2 = FindParams.findAppid2(name, token) + "\"actions\":\"advertScriptById\",\"url\":";
+        String excuteurl2 = FindParams.findAppid2(name, token,cpId) + "\"actions\":\"advertScriptById\",\"url\":";
         String Domain = "\"http://";
         String excuteurl3 = "/sdk/api/init/admin/setup\",\"flag\":\"1\"}";
         String[] ipArray = {
