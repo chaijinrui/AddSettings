@@ -50,7 +50,6 @@ public class ChangeRespon {
                         , "UTF-8");
         log.info("fixUrl={}", fixUrl);
         String fixres = RequestUtil.getRequest(fixUrl, token);
-
-        log.info("{}请求fix接口响应：{}", name, fixres);
+        log.info("fixres=" + fixres);
     }
 }

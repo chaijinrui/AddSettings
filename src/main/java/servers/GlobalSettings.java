@@ -42,29 +42,34 @@ public class GlobalSettings {
 
 
     public static void main(String[] args) throws IOException, SelfException {
-        String token = GetToken.getToken();
-        log.info("token: {}", token);
 //        需要增加配置的包
         String[] rpkName = {
 //                "做我房客（做我房客H）",
-                "十万个冷知识",
-                "思维夺宝",
-                "夺宝智多星",
-                "静心白噪音",
-                "知识巅峰",
-                "启点小说",
-                "答题英雄",
-                "舒睡宝",
-                "黄金读书",
-                "白鲸追书大全",
-                "全免小说大全",
-                "答题之星",
-                "猜题夺金"
+//                "十万个冷知识",
+//                "思维夺宝",
+//                "恋爱圈子",
+//                "创意头像",
+//                "夺宝智多星",
+//                "静心白噪音",
+//                "知识巅峰",
+//                "启点小说",
+//                "答题英雄",
+//                "舒睡宝",
+//                "黄金读书",
+//                "白鲸追书大全",
+//                "全免小说大全",
+//                "答题之星",
+//                "猜题夺金",
+                "西瓜免费小说",
+                "答题之星"
         };
         String cpId = "9483";
+        String token = GetToken.getToken();
         for (String packname : rpkName) {
             log.info("{}开始", packname);
-            new GlobalSettings().addSettings(packname, "DJSW", "3-0", token, cpId);
+            new GlobalSettings().addSettings(packname, "TDR", "2-4000-1-1", token, cpId);
+            new GlobalSettings().addSettings(packname, "APL", "10", token, cpId);
+            new GlobalSettings().addSettings(packname, "THT", "4", token, cpId);
         }
     }
 }

@@ -15,9 +15,9 @@ public class Action {
     private static final Logger log = LogManager.getLogger(Action.class);
 
     //    立即生效
-    public static void execute(String token, String name,String cpId) throws IOException {
+    public static void execute(String token, String name, String cpId) throws IOException {
         String excuteurl1 = "http://cms.cyngame.cn:8190/initAction/initLoadTable.action?actions=reloadSDKServers&methodName=SDK_WEBConfigInfo&formValue=";
-        String excuteurl2 = FindParams.findAppid2(name, token,cpId) + "\"actions\":\"advertScriptById\",\"url\":";
+        String excuteurl2 = FindParams.findAppid2(name, token, cpId) + "\"actions\":\"advertScriptById\",\"url\":";
         String Domain = "\"http://";
         String excuteurl3 = "/sdk/api/init/admin/setup\",\"flag\":\"1\"}";
         String[] ipArray = {
@@ -56,10 +56,10 @@ public class Action {
         String finalUrl = null;
         for (int i = 0; i < ipArray.length; i++) {
             String ip = ipArray[i];
-            log.info("{}{}{}{}{}", excuteurl1, excuteurl2, Domain, ip, excuteurl3);
+//            log.info("{}{}{}{}{}", excuteurl1, excuteurl2, Domain, ip, excuteurl3);
             finalUrl = excuteurl1 + URLEncoder.encode(excuteurl2 + Domain + ip + excuteurl3, "UTF-8");
-            log.info("请求链接：{}", finalUrl);
-            log.info("立即生效响应：{}", RequestUtil.getRequest(finalUrl, token));
+//            log.info("请求链接：{}", finalUrl);
+//            log.info("立即生效响应：{}", RequestUtil.getRequest(finalUrl, token));
         }
         log.info("{}添加完毕", name);
     }
@@ -97,7 +97,6 @@ public class Action {
         } else
             log.info("包名都正确");
     }
-
 }
 
 

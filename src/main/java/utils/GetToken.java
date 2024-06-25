@@ -46,6 +46,7 @@ public class GetToken {
 
 //        从header中拿到JSESSIONID
         token = "JSESSIONID=" + token.substring(token.indexOf("=") + 1, token.indexOf(";"));
+        log.info("token: {}", token);
         return token;
     }
 }
